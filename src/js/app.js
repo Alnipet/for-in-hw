@@ -9,16 +9,16 @@ export default function orderByProps(obj, propsArr) {
       key,
       value: obj[key],
     };
-    if (propsArr.includes(key)) {
-      if (key === propsArr[0]) {
-        arr1.push(propsObj);
-        propsArr.splice(0, 1);
-      }
+
+    if (propsArr.includes(key) && key === propsArr[0]) {
+      arr1.push(propsObj);
+      propsArr.splice(0, 1);
     } else {
       arr2.push(propsObj);
     }
   }
 
   arr2.sort((elem1, elem2) => elem1.key.localeCompare(elem2.key));
+
   return arr1.concat(arr2);
 }
