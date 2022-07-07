@@ -1,15 +1,24 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable guard-for-in */
 export default function orderByProps(obj, propsArr) {
-  const arr = [];
+  const arr1 = [];
+  const arr2 = [];
 
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < propsArr.length; i++) {
-    // eslint-disable-next-line guard-for-in
-    for (const key in obj) {
-      if (propsArr[i] === key) {
-        arr.push({ key: propsArr[i], value: obj[propsArr[i]] });
+  for (const key in obj) {
+    const propsObj = {
+      key,
+      value: obj[key],
+    };
+    if (propsArr.includes(key)) {
+      if (key === propsArr[0]) {
+        arr1.push(propsObj);
+        propsArr.splice(0, 1);
       }
+    } else {
+      arr2.push(propsObj);
     }
   }
 
-  return arr;
+  arr2.sort((elem1, elem2) => elem1.key.localeCompare(elem2.key));
+  return arr1.concat(arr2);
 }
