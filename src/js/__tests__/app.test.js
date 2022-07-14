@@ -37,30 +37,3 @@ test('Возвращает массив отсосртированный по а
     { key: 'name', value: 'мечник' },
   ]);
 });
-
-test('Возвращает первым элементом объект со значением ключа первого элемента массива', () => {
-  const obj = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
-  };
-
-  expect(orderByProps(obj, ['name', 'health'])[0]).toStrictEqual({ key: 'name', value: 'мечник' });
-});
-
-test('Должен мутировать аргумент массив с ключами до пустого массива, если нет поторяющихся значений', () => {
-  const obj = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
-  };
-
-  const propsArr = ['name', 'health'];
-  orderByProps(obj, propsArr);
-
-  expect(propsArr).toStrictEqual([]);
-});
